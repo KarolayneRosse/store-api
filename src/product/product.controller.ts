@@ -10,28 +10,27 @@ import {
   Post,
   Res,
 } from '@nestjs/common';
+import { ProductEntity } from './product.entity';
 import { ProductService } from './product.service';
 
 @Controller('product')
 export class ProductController {
   constructor(private productService: ProductService) {}
 
-  @Get('list/:id')
-  findAll(@Res() response, @Param() params) {
-    return params.id >= 3
-      ? response.status(200).send('Listando produtos')
-      : response.status(500).send('Não pode listar menos que 3 produtos');
+  @Get('')
+  async findAll() {
+    return await this.productService.findAll();
   }
 
-  @Get(':id')
+  @Get('list/:id')
   findOne(@Param() params) {
-    return `Produto ${params.id}`;
+    return ;
   }
 
   @Post('create')
-  @HttpCode(HttpStatus.NO_CONTENT)
-  createProduct(@Body() body) {
-    return body;
+  async createProduct(@Body() body) {
+    const data: ProductEntity = await this.productService.createProduct(body)
+    return data;
   }
 
   @Patch(':id')

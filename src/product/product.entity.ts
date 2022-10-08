@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Double, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity({name: 'products'})
 export class ProductEntity {
@@ -8,11 +8,8 @@ export class ProductEntity {
   @Column({name: 'name', unique: false, nullable: false})
   public name: string
 
-  // @Column({name: 'email', unique: true, nullable: false})
-  // public email: string
-
-  // @Column({name: 'birth_date', unique: false, nullable: false})
-  // public birthDate: string
+  @Column({name:'price', unique: false, nullable: false, type: 'double'})
+  public price: Number
 
   @CreateDateColumn({
     name: 'created_at',
