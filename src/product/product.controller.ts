@@ -33,9 +33,10 @@ export class ProductController {
     return data;
   }
 
-  @Patch(':id')
-  updateProduct(@Param('id') id: string, @Body() body) {
-    return `Atualizando produto: ${id} - ${body.name}`;
+  @Post('edit')
+  async updateProduct(@Body() body) {
+    const data = await this.productService.editProduct(body)
+    return data;
   }
 
   @Delete(':id')

@@ -11,6 +11,9 @@ export class ProductEntity {
   @Column({name:'price', unique: false, nullable: false, type: 'double'})
   public price: Number
 
+  @Column({name:'code', unique: false, nullable: true, type: 'integer'})
+  public code: Number
+
   @CreateDateColumn({
     name: 'created_at',
     type: 'timestamp',

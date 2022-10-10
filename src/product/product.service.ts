@@ -21,4 +21,9 @@ export class ProductService {
   public async findAll(){
     return await this.productRepository.findAndCount();
   }
+
+  public async editProduct(product){
+    return await this.productRepository.createQueryBuilder('products').update('products').set(product)
+    .where("id = :id", {id: product.id}).execute()
+  }
 }
